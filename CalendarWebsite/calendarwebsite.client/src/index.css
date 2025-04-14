@@ -4,3 +4,9 @@
   /* max-width: 1000px; */
   margin: 0 auto;
 }
+
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+  margin-right: 2px;
+  padding: 10px;
+}
