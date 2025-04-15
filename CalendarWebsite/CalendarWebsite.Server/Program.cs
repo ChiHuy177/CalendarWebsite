@@ -28,6 +28,7 @@ namespace CalendarWebsite.Server
                     
                         policy.WithOrigins("https://localhost:50857").AllowAnyHeader().AllowAnyMethod();
                         policy.WithOrigins("https://prismatic-cactus-d90033.netlify.app").AllowAnyHeader().AllowAnyMethod();
+                        policy.WithOrigins("https://calendar-frontend-54y9.onrender.com").AllowAnyHeader().AllowAnyMethod();
                     });
             });
 
