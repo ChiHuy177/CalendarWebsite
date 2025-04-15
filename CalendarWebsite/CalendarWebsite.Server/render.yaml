@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: calendar-backend
+    env: dotnet
+    buildCommand: "dotnet publish -c Release -o out"
+    startCommand: "dotnet out/CalendarWebsite.Server.dll"
+    rootDir: CalendarWebsite.Server
+    plan: free
