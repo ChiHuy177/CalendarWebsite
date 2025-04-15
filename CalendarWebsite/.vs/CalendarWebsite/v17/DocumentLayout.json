@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\GitHub\\CalendarWebsite\\CalendarWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|d:\\github\\calendarwebsite\\calendarwebsite\\calendarwebsite.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|solutionrelative:calendarwebsite.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|d:\\github\\calendarwebsite\\calendarwebsite\\calendarwebsite.server\\calendarwebsite.server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|solutionrelative:calendarwebsite.server\\calendarwebsite.server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|d:\\github\\calendarwebsite\\calendarwebsite\\calendarwebsite.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|solutionrelative:calendarwebsite.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B0B09F95-BF05-46F2-8C49-A520B279A67F}|CalendarWebsite.Server\\CalendarWebsite.Server.csproj|d:\\github\\calendarwebsite\\calendarwebsite\\calendarwebsite.server\\controllers\\personalprofilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,13 +58,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "CalendarWebsite.Server.http",
               "DocumentMoniker": "D:\\GitHub\\CalendarWebsite\\CalendarWebsite\\CalendarWebsite.Server\\CalendarWebsite.Server.http",
               "RelativeDocumentMoniker": "CalendarWebsite.Server\\CalendarWebsite.Server.http",
               "ToolTip": "D:\\GitHub\\CalendarWebsite\\CalendarWebsite\\CalendarWebsite.Server\\CalendarWebsite.Server.http",
               "RelativeToolTip": "CalendarWebsite.Server\\CalendarWebsite.Server.http",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBYAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2025-04-15T03:27:10.853Z",
               "EditorCaption": ""
@@ -119,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\GitHub\\CalendarWebsite\\CalendarWebsite\\CalendarWebsite.Server\\Program.cs",
               "RelativeDocumentMoniker": "CalendarWebsite.Server\\Program.cs",
