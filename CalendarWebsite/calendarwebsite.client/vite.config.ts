@@ -51,8 +51,8 @@ export default defineConfig({
     },
     server: {
         https: process.env.NODE_ENV === 'development' ? {
-            key: fs.readFileSync('./path/to/localhost-key.pem'),
-            cert: fs.readFileSync('./path/to/localhost-cert.pem'),
+            key: fs.readFileSync(keyFilePath),
+            cert: fs.readFileSync(certFilePath),
         } : undefined,
         proxy: {
             
