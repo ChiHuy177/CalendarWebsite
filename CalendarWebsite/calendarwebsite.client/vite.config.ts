@@ -49,6 +49,10 @@ export default defineConfig({
         outDir: 'dist', // Thư mục đầu ra
     },
     server: {
+        https: process.env.NODE_ENV === 'development' ? {
+            key: fs.readFileSync('./path/to/localhost-key.pem'),
+            cert: fs.readFileSync('./path/to/localhost-cert.pem'),
+        } : undefined,
         proxy: {
             '^/weatherforecast': {
                 target,
@@ -61,9 +65,6 @@ export default defineConfig({
             },
         },
         port: 50857,
-        https: {
-            key: fs.readFileSync(keyFilePath),
-            cert: fs.readFileSync(certFilePath),
-        }
+        
     }
 })
