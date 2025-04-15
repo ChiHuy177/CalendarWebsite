@@ -8,3 +8,18 @@ GET {{CalendarWebsite.Server_HostAddress}}/api/DataOnly_APIaCheckIn/GetAllUsersN
 GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetAllUsersName
 
 ###
+
+GET {{CalendarWebsite.Server_HostAddress}}/api/personalprofiles
+
+###
+
+@month=3
+@year=2025
+@userId=duydd1@vntt.com.vn
+GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetRecordsByMonth?month={{month}}&year={{year}}&userId={{userId}}
+
+###
+
+GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/  {{month}}&year={{year}}&userId={{userId}}
+
+###

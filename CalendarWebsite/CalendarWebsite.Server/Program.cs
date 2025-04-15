@@ -25,7 +25,9 @@ namespace CalendarWebsite.Server
                 options.AddDefaultPolicy(
                     policy =>
                     {
+                    
                         policy.WithOrigins("https://localhost:50857").AllowAnyHeader().AllowAnyMethod();
+                        policy.WithOrigins("https://prismatic-cactus-d90033.netlify.app").AllowAnyHeader().AllowAnyMethod();
                     });
             });
 

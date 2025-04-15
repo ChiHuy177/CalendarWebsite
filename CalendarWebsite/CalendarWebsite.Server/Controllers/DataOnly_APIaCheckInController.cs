@@ -46,6 +46,16 @@ namespace CalendarWebsite.Server.Controllers
             return Ok(uniqueName);
 
         }
+        [HttpGet("CountRecordsByMonth")]
+        public async Task<ActionResult<int>> CountRecordsByMonth(int month, int year, string userId)
+        {
+            var count = await _context.Users
+                .Where(e => e.UserId == userId && e.InAt.HasValue && e.InAt.Value.Month == month && e.InAt.Value.Year == year)
+                .Where(e => EF.Functions.DateDiffHour(e.InAt, e.OutAt) > 7.5)
+                .CountAsync();
+
+            return Ok(count);
+        }
 
         // GET: api/DataOnly_APIaCheckIn/5
         [HttpGet("{id}")]
