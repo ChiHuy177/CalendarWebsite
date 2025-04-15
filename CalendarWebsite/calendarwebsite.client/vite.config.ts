@@ -52,7 +52,7 @@ export default defineConfig({
         https: process.env.NODE_ENV === 'development' ? {
             key: fs.readFileSync('./path/to/localhost-key.pem'),
             cert: fs.readFileSync('./path/to/localhost-cert.pem'),
-        } : undefined,
+        } : false,
         proxy: {
             '^/weatherforecast': {
                 target,
