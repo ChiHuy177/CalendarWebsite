@@ -40,8 +40,8 @@ export default function ExportCustomToolbar() {
                 id: index + 1,
                 userId: item.userId,
                 workingDate: formatDate(item.at),
-                inAt: formatTime(item.inAt),
-                outAt: formatTime(item.outAt),
+                inAt: formatTime(item.inAt.toString()),
+                outAt: formatTime(item.outAt.toString()),
             }));
             setRows(formattedData);
         }
