@@ -23,3 +23,7 @@ GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetRecordsBy
 GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/  {{month}}&year={{year}}&userId={{userId}}
 
 ###
+
+GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetUserByUserId?month={{month}}&year={{year}}&userID={{userID}}
+
+###

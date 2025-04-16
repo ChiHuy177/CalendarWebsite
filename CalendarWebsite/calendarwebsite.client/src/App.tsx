@@ -1,16 +1,15 @@
 
 import './App.css';
-import CalendarComponent from './CalendarComponent';
 import { ToastContainer, Bounce } from 'react-toastify';
+// import DashboardLayout from './Pages/DashboardLayout';
+import { Routes } from './Routes';
 
 
 function App() {
 
     return (
         <div>
-
-            <CalendarComponent></CalendarComponent>
-
+            <Routes/>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

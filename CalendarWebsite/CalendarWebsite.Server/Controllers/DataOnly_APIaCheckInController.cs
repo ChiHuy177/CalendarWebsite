@@ -29,9 +29,9 @@ namespace CalendarWebsite.Server.Controllers
         }
 
         [HttpGet("GetUserByUserId")]
-        public async Task<ActionResult<IEnumerable<DataOnly_APIaCheckIn>>> GetUserByUserId(string userID)
+        public async Task<ActionResult<IEnumerable<DataOnly_APIaCheckIn>>> GetUserByUserId(int month,int year ,string userID)
         {
-            return await _context.Users.Where(w => w.UserId == userID).ToListAsync();
+            return await _context.Users.Where(w => w.UserId == userID && w.InAt.HasValue && w.InAt.Value.Month == month && w.InAt.Value.Year == year).ToListAsync();
         }
 
         [HttpGet("GetAllUsersName")]
@@ -51,7 +51,7 @@ namespace CalendarWebsite.Server.Controllers
         {
             var count = await _context.Users
                 .Where(e => e.UserId == userId && e.InAt.HasValue && e.InAt.Value.Month == month && e.InAt.Value.Year == year)
-                .Where(e => EF.Functions.DateDiffHour(e.InAt, e.OutAt) > 7.5)
+                .Where(e => EF.Functions.DateDiffHour(e.InAt, e.OutAt) > 6)
                 .CountAsync();
 
             return Ok(count);
