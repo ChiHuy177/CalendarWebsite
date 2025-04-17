@@ -7,6 +7,7 @@ import { Bounce, toast } from 'react-toastify';
 import { User } from '../interfaces/type';
 import axios from 'axios';
 
+
 export default function CalendarComponent() {
     const [loading, setLoading] = useState(false);
     const [events, setEvents] = useState<EventInput[]>([]);
@@ -17,6 +18,7 @@ export default function CalendarComponent() {
     const [selectedEvent, setSelectedEvent] = useState<EventInput | null>(null);
     const calendarRef = useRef<FullCalendar>(null);
     const [workDays, setWorkDays] = useState<number>(0);
+
 
     const getWorkDaysInitial = async (id: string) => {
         const calendarApi = calendarRef.current?.getApi();
@@ -316,11 +318,11 @@ export default function CalendarComponent() {
                     return;
                 }
                 const eventList: EventInput[] = [];
-    
+
                 data.forEach((item: User) => {
                     const adjustedStart = new Date(item.inAt);
                     adjustedStart.setHours(adjustedStart.getHours() + 7);
-    
+
                     const adjustedEnd = new Date(item.outAt);
                     adjustedEnd.setHours(adjustedEnd.getHours() + 7);
                     if (isLate(adjustedStart.toString())) {
@@ -362,7 +364,7 @@ export default function CalendarComponent() {
                             id: item.id?.toString() + '-out',
                             title: 'Giờ ra',
                             start: adjustedEnd,
-    
+
                             extendedProps: {
                                 description: "Đúng giờ",
                                 staffName: item.fullName,
@@ -371,7 +373,7 @@ export default function CalendarComponent() {
                         });
                     }
                 });
-    
+
                 setTimeout(() => {
                     setLoading(false);
                     setEvents(eventList);
@@ -402,6 +404,7 @@ export default function CalendarComponent() {
 
             <div className="mb-8 flex flex-col items-center">
                 <div className="relative w-96">
+
                     <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </span>
@@ -495,7 +498,7 @@ export default function CalendarComponent() {
                                     <p className="text-gray-600">{arg.event.extendedProps?.description}</p>
                                 </div>
                             )}
-                            
+
                             viewClassNames='w-full'
                         />
                     </div>
