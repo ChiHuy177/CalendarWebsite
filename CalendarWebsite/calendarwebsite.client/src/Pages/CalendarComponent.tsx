@@ -3,9 +3,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import { EventClickArg, EventInput } from '@fullcalendar/core';
 import Popover from '@mui/material/Popover';
-// import Typography from '@mui/material/Typography';
 import { Bounce, toast } from 'react-toastify';
 import { User } from '../interfaces/type';
+import axios from 'axios';
 
 export default function CalendarComponent() {
     const [loading, setLoading] = useState(false);
@@ -21,54 +21,51 @@ export default function CalendarComponent() {
     const getWorkDaysInitial = async (id: string) => {
         const calendarApi = calendarRef.current?.getApi();
         if (calendarApi) {
-            // Lấy ngày đầu tiên của view hiện tại
             const currentViewDate = calendarApi.view.currentStart;
+            const month = currentViewDate.getMonth() + 1;
+            const year = currentViewDate.getFullYear();
 
-            // Lấy tháng và năm
-            const month = currentViewDate.getMonth() + 1; // Tháng (cộng 1 vì getMonth() trả về giá trị từ 0-11)
-            const year = currentViewDate.getFullYear(); // Năm
+            if (id === '') return;
 
-            console.log('Tháng hiện tại:', month);
-            console.log('Năm hiện tại:', year);
-            if (id === '') {
-                return;
-            }
-            console.log('ID:', id);
             const valueBeforeDash = id.split('-')[0];
-            const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/CountRecordsByMonth?month=' + month + '&year=' + year + '&userId=' + valueBeforeDash;
-            const response = await fetch(apiUrl);
-            if (response) {
-                setWorkDays(await response.json());
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/DataOnly_APIaCheckIn/CountRecordsByMonth`;
+            try {
+                const response = await axios.get(apiUrl, {
+                    params: { month, year, userId: valueBeforeDash },
+                });
+                setWorkDays(response.data);
+            } catch (error) {
+                console.error('Error fetching work days:', error);
             }
         } else {
             console.error('Calendar API is not available');
         }
     };
+
     const getWorkDays = async () => {
         const calendarApi = calendarRef.current?.getApi();
         if (calendarApi) {
-            // Lấy ngày đầu tiên của view hiện tại
             const currentViewDate = calendarApi.view.currentStart;
+            const month = currentViewDate.getMonth() + 1;
+            const year = currentViewDate.getFullYear();
 
-            // Lấy tháng và năm
-            const month = currentViewDate.getMonth() + 1; // Tháng (cộng 1 vì getMonth() trả về giá trị từ 0-11)
-            const year = currentViewDate.getFullYear(); // Năm
-
-
-            if (selectedName === '') {
-                return;
-            }
+            if (selectedName === '') return;
 
             const valueBeforeDash = selectedName.split('-')[0];
-            const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/CountRecordsByMonth?month=' + month + '&year=' + year + '&userId=' + valueBeforeDash;
-            const response = await fetch(apiUrl);
-            if (response) {
-                setWorkDays(await response.json());
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/DataOnly_APIaCheckIn/CountRecordsByMonth`;
+            try {
+                const response = await axios.get(apiUrl, {
+                    params: { month, year, userId: valueBeforeDash },
+                });
+                setWorkDays(response.data);
+            } catch (error) {
+                console.error('Error fetching work days:', error);
             }
         } else {
             console.error('Calendar API is not available');
         }
     };
+
     const EventPopover = () => {
         const handlePopoverClose = () => {
             setAnchorEl(null); // Đóng Popover
@@ -140,14 +137,15 @@ export default function CalendarComponent() {
 
     useEffect(() => {
         async function getAllUserName() {
-            const apiUrl = import.meta.env.VITE_API_URL + 'api/personalprofiles/GetAllUsersName';
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                setNameOfUsers(data);
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/personalprofiles/GetAllUsersName`;
+            try {
+                const response = await axios.get(apiUrl);
+                setNameOfUsers(response.data);
+            } catch (error) {
+                console.error('Error fetching user names:', error);
             }
         }
-        getWorkDaysInitial("");
+        getWorkDaysInitial('');
         getAllUserName();
     }, []);
 
@@ -159,11 +157,11 @@ export default function CalendarComponent() {
     const handleNameClick = (name: string) => {
         setSelectedName(name);
         setFilter('');
-        // findUserById(name); 
         getWorkScheduleByMonthInitial(name);
         getWorkDaysInitial(name);
     };
-    async function getWorkScheduleByMonthInitial(id: string): Promise<void> {
+
+    const getWorkScheduleByMonthInitial = async (id: string): Promise<void> => {
         if (id === '') {
             toast.error('Vui lòng nhập tên!', {
                 position: 'top-center',
@@ -181,60 +179,53 @@ export default function CalendarComponent() {
         setLoading(true);
         const calendarApi = calendarRef.current?.getApi();
         if (calendarApi) {
-            // Lấy ngày đầu tiên của view hiện tại
             const currentViewDate = calendarApi.view.currentStart;
+            const month = currentViewDate.getMonth() + 1;
+            const year = currentViewDate.getFullYear();
 
-            // Lấy tháng và năm
-            const month = currentViewDate.getMonth() + 1; // Tháng (cộng 1 vì getMonth() trả về giá trị từ 0-11)
-            const year = currentViewDate.getFullYear(); // Năm
-
-            if (id === "") {
-                return;
-            }
             const valueBeforeDash = id.split('-')[0];
-            const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/GetUserByUserId?month=' + month + '&year=' + year + '&userId=' + valueBeforeDash;
-            console.log(apiUrl);
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.length);
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/DataOnly_APIaCheckIn/GetUserByUserId`;
+            try {
+                const response = await axios.get(apiUrl, {
+                    params: { month, year, userId: valueBeforeDash },
+                });
+                const data = response.data;
+
                 if (data.length === 0) {
                     toast.error('Không tìm thấy lịch làm việc của nhân viên này!', {
-                        position: "top-center",
+                        position: 'top-center',
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: false,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "light",
+                        theme: 'light',
                         transition: Bounce,
                     });
                     setLoading(false);
                     setEvents([]);
                     return;
                 }
+
                 const eventList: EventInput[] = [];
-    
                 data.forEach((item: User) => {
                     const adjustedStart = new Date(item.inAt);
                     adjustedStart.setHours(adjustedStart.getHours() + 7);
-                    // console.log(adjustedStart.toString());
-    
-    
+
                     const adjustedEnd = new Date(item.outAt);
                     adjustedEnd.setHours(adjustedEnd.getHours() + 7);
-                    //check di muon
+
                     if (isLate(adjustedStart.toString())) {
                         eventList.push({
                             id: item.id?.toString(),
                             title: 'Giờ vào (Vào trễ)',
                             start: adjustedStart,
                             extendedProps: {
-                                description: "Vào trễ",
+                                description: 'Vào trễ',
                                 staffName: item.fullName,
                             },
-                            className: 'bg-red-400 text-black rounded px-2 text-xs sm:text-sm md:text-base lg:text-lg whitespace-normal break-words',
+                            className: 'bg-red-400 text-black rounded px-2',
                         });
                     } else {
                         eventList.push({
@@ -242,73 +233,72 @@ export default function CalendarComponent() {
                             title: 'Giờ vào',
                             start: adjustedStart,
                             extendedProps: {
-                                description: "Đúng giờ",
+                                description: 'Đúng giờ',
                                 staffName: item.fullName,
                             },
-                            className: 'bg-green-400 text-black rounded px-2 text-xs sm:text-sm md:text-base lg:text-lg whitespace-normal break-words',
+                            className: 'bg-green-400 text-black rounded px-2',
                         });
                     }
-                    //check ve som hon 17h
+
                     if (isGoHomeEarly(adjustedEnd.toString())) {
                         eventList.push({
                             id: item.id?.toString() + '-out',
-                            title: 'Giờ ra  (Về sớm)',
+                            title: 'Giờ ra (Về sớm)',
                             start: adjustedEnd,
                             extendedProps: {
-                                description: "Về sớm",
+                                description: 'Về sớm',
                                 staffName: item.fullName,
                             },
-                            className: 'bg-[rgba(224,198,82,1)] text-black rounded px-2',
+                            className: 'bg-yellow-400 text-black rounded px-2',
                         });
                     } else {
                         eventList.push({
                             id: item.id?.toString() + '-out',
                             title: 'Giờ ra',
                             start: adjustedEnd,
-    
                             extendedProps: {
-                                description: "Đúng giờ",
+                                description: 'Đúng giờ',
                                 staffName: item.fullName,
                             },
                             className: 'bg-green-400 text-black rounded px-2',
                         });
                     }
                 });
-    
+
                 setTimeout(() => {
                     setLoading(false);
                     setEvents(eventList);
                     getWorkDays();
                 }, 1000);
+            } catch (error) {
+                console.error('Error fetching work schedule:', error);
+                setLoading(false);
             }
         }
-        
-        
-    }
-    async function getWorkScheduleByMonth(): Promise<void> {
+    };
+
+    const getWorkScheduleByMonth = async (): Promise<void> => {
         if (selectedName === '') {
             return;
         }
         setLoading(true);
         const calendarApi = calendarRef.current?.getApi();
         if (calendarApi) {
-            // Lấy ngày đầu tiên của view hiện tại
             const currentViewDate = calendarApi.view.currentStart;
-
-            // Lấy tháng và năm
-            const month = currentViewDate.getMonth() + 1; // Tháng (cộng 1 vì getMonth() trả về giá trị từ 0-11)
-            const year = currentViewDate.getFullYear(); // Năm
+            const month = currentViewDate.getMonth() + 1;
+            const year = currentViewDate.getFullYear();
 
             if (selectedName === "") {
                 return;
             }
             const valueBeforeDash = selectedName.split('-')[0];
-            const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/GetUserByUserId?month=' + month + '&year=' + year + '&userId=' + valueBeforeDash;
-            console.log(apiUrl);
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.length);
+            const apiUrl = `${import.meta.env.VITE_API_URL}api/DataOnly_APIaCheckIn/GetUserByUserId`;
+            try {
+                const response = await axios.get(apiUrl, {
+                    params: { month, year, userId: valueBeforeDash },
+                });
+                const data = response.data;
+
                 if (data.length === 0) {
                     toast.error('Không tìm thấy lịch làm việc của nhân viên này!', {
                         position: "top-center",
@@ -330,12 +320,9 @@ export default function CalendarComponent() {
                 data.forEach((item: User) => {
                     const adjustedStart = new Date(item.inAt);
                     adjustedStart.setHours(adjustedStart.getHours() + 7);
-                    // console.log(adjustedStart.toString());
-    
     
                     const adjustedEnd = new Date(item.outAt);
                     adjustedEnd.setHours(adjustedEnd.getHours() + 7);
-                    //check di muon
                     if (isLate(adjustedStart.toString())) {
                         eventList.push({
                             id: item.id?.toString(),
@@ -359,7 +346,6 @@ export default function CalendarComponent() {
                             className: 'bg-green-400 text-black rounded px-2 text-xs sm:text-sm md:text-base lg:text-lg whitespace-normal break-words',
                         });
                     }
-                    //check ve som hon 17h
                     if (isGoHomeEarly(adjustedEnd.toString())) {
                         eventList.push({
                             id: item.id?.toString() + '-out',
@@ -391,119 +377,12 @@ export default function CalendarComponent() {
                     setEvents(eventList);
                     getWorkDays();
                 }, 1000);
+            } catch (error) {
+                console.error('Error fetching work schedule:', error);
+                setLoading(false);
             }
         }
-        
-        
-    }
-    // async function findUserById(id: string): Promise<void> {
-        
-    //     if (id === '') {
-    //         toast.error('Vui lòng nhập tên!', {
-    //             position: 'top-center',
-    //             autoClose: 5000,
-    //             hideProgressBar: false,
-    //             closeOnClick: false,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: 'light',
-    //             transition: Bounce,
-    //         });
-    //         return;
-    //     }
-    //     setLoading(true);
-        
-    //     const valueBeforeDash = id.split('-')[0];
-    //     const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/GetUserByUserId?userId=';
-    //     getWorkDaysInitial(id);
-    //     const response = await fetch(apiUrl + valueBeforeDash);
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         if (data.length === 0) {
-    //             toast.error('Không tìm thấy lịch làm việc của nhân viên này', {
-    //                 position: "top-center",
-    //                 autoClose: 5000,
-    //                 hideProgressBar: false,
-    //                 closeOnClick: false,
-    //                 pauseOnHover: true,
-    //                 draggable: true,
-    //                 progress: undefined,
-    //                 theme: "light",
-    //                 transition: Bounce,
-    //             });
-    //             setLoading(false);
-    //             setEvents([]);
-    //             return;
-    //         }
-    //         const eventList: EventInput[] = [];
-
-    //         data.forEach((item: User) => {
-    //             const adjustedStart = new Date(item.inAt);
-    //             adjustedStart.setHours(adjustedStart.getHours() + 7);
-    //             // console.log(adjustedStart.toString());
-
-
-    //             const adjustedEnd = new Date(item.outAt);
-    //             adjustedEnd.setHours(adjustedEnd.getHours() + 7);
-    //             //check di muon
-    //             if (isLate(adjustedStart.toString())) {
-    //                 eventList.push({
-    //                     id: item.id?.toString(),
-    //                     title: 'Giờ vào (Vào trễ)',
-    //                     start: adjustedStart,
-    //                     extendedProps: {
-    //                         description: "Vào trễ",
-    //                         staffName: item.fullName,
-    //                     },
-    //                     className: 'bg-red-400 text-black rounded px-2 text-xs sm:text-sm md:text-base lg:text-lg whitespace-normal break-words',
-    //                 });
-    //             } else {
-    //                 eventList.push({
-    //                     id: item.id?.toString(),
-    //                     title: 'Giờ vào',
-    //                     start: adjustedStart,
-    //                     extendedProps: {
-    //                         description: "Đúng giờ",
-    //                         staffName: item.fullName,
-    //                     },
-    //                     className: 'bg-green-400 text-black rounded px-2 text-xs sm:text-sm md:text-base lg:text-lg whitespace-normal break-words',
-    //                 });
-    //             }
-    //             //check ve som hon 17h
-    //             if (isGoHomeEarly(adjustedEnd.toString())) {
-    //                 eventList.push({
-    //                     id: item.id?.toString() + '-out',
-    //                     title: 'Giờ ra  (Về sớm)',
-    //                     start: adjustedEnd,
-    //                     extendedProps: {
-    //                         description: "Về sớm",
-    //                         staffName: item.fullName,
-    //                     },
-    //                     className: 'bg-[rgba(224,198,82,1)] text-black rounded px-2',
-    //                 });
-    //             } else {
-    //                 eventList.push({
-    //                     id: item.id?.toString() + '-out',
-    //                     title: 'Giờ ra',
-    //                     start: adjustedEnd,
-
-    //                     extendedProps: {
-    //                         description: "Đúng giờ",
-    //                         staffName: item.fullName,
-    //                     },
-    //                     className: 'bg-green-400 text-black rounded px-2',
-    //                 });
-    //             }
-    //         });
-
-    //         setTimeout(() => {
-    //             setLoading(false);
-    //             setEvents(eventList);
-                
-    //         }, 1000);
-    //     }
-    // }
+    };
 
     const handleEventClick = (info: EventClickArg) => {
         setAnchorEl(info.el); // Set the clicked element as anchor
@@ -516,8 +395,6 @@ export default function CalendarComponent() {
         });
 
     };
-
-
 
     return (
         <div className="p-6 bg-[#083B75] min-h-screen text-center max-w-screen rounded-lg">

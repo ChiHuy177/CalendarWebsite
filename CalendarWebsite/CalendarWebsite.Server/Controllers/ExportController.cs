@@ -49,30 +49,29 @@ namespace CalendarWebsite.Server.Controllers
             sheet.Cell("A1").Value = "VNTT";
             sheet.Cell("A1").Style.Font.Bold = true;
             sheet.Cell("A1").Style.Font.FontSize = 16;
-            // sheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+        
 
             sheet.Range("A2:F2").Merge(); // Merge cells for the title
             sheet.Cell("A2").Value = "BÁO CÁO CHECK IN AND CHECK OUT";
             sheet.Cell("A2").Style.Font.Bold = true;
             sheet.Cell("A2").Style.Font.FontSize = 14;
-            // sheet.Cell("A2").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+          
 
             sheet.Range("A3:F3").Merge(); // Merge cells for the area
             sheet.Cell("A3").Value = "Nhân viên: " + userID + " - " + checkinData.FirstOrDefault()?.FullName;
             sheet.Cell("A3").Style.Font.Italic = true;
-            // sheet.Cell("A3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            
 
             sheet.Range("A4:F4").Merge(); // Merge cells for the date range
             sheet.Cell("A4").Value = "Thời gian: Tháng " + month + "/" + year;
-            // sheet.Cell("A4").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
+            
+            
             // headers
             sheet.Cell(6, 1).Value = "No"; 
-            sheet.Cell(6, 2).Value = "User ID";
-            sheet.Cell(6, 3).Value = "Working Day";
-            sheet.Cell(6, 4).Value = "Check-in Time";
-            sheet.Cell(6, 5).Value = "Check-out Time";
-            sheet.Cell(6, 6).Value = "Total working time";
+            sheet.Cell(6, 2).Value = "Working Day";
+            sheet.Cell(6, 3).Value = "Check-in Time";
+            sheet.Cell(6, 4).Value = "Check-out Time";
+            sheet.Cell(6, 5).Value = "Total working time";
 
             // Add data rows
             for (int i = 0; i < checkinData.Count; i++)
@@ -86,11 +85,10 @@ namespace CalendarWebsite.Server.Controllers
                 TimeSpan timeDifference = checkoutTime - checkinTime - 1 * TimeSpan.FromHours(1); // Subtract 1 hour for lunch break
 
                 sheet.Cell(i + 7, 1).Value = i + 1; // Add serial number
-                sheet.Cell(i + 7, 2).Value = checkinData[i].UserId;
-                sheet.Cell(i + 7, 3).Value = checkinData[i].InAt?.ToString("dd/MM/yyyy") ?? "N/A";
-                sheet.Cell(i + 7, 4).Value = checkinTimeformatted;
-                sheet.Cell(i + 7, 5).Value = checkoutTimeformatted;
-                sheet.Cell(i + 7, 6).Value = timeDifference.ToString(@"hh\:mm");
+                sheet.Cell(i + 7, 2).Value = checkinData[i].InAt?.ToString("dd/MM/yyyy") ?? "N/A";
+                sheet.Cell(i + 7, 3).Value = checkinTimeformatted;
+                sheet.Cell(i + 7, 4).Value = checkoutTimeformatted;
+                sheet.Cell(i + 7, 5).Value = timeDifference.ToString(@"hh\:mm");
             }
 
             return SendExcel(wb, $"checkin-data-{userID}-{month}-{year}.xlsx");
