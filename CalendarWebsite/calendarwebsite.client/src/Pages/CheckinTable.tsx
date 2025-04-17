@@ -2,8 +2,8 @@ import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-g
 import { useEffect, useState } from 'react';
 import { formatTime, User } from '../interfaces/type';
 import { formatDate } from '@fullcalendar/core/index.js';
-
-
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 function CustomToolbar() {
     return (
         <GridToolbarContainer>
@@ -18,21 +18,24 @@ export default function ExportCustomToolbar() {
     const [nameOfUsers, setNameOfUsers] = useState<string[]>([]);
     const [filter, setFilter] = useState('');
     const [selectedName, setSelectedName] = useState('');
+    const [showSelects, setShowSelects] = useState(false);
+    const [selectedMonth, setSelectedMonth] = useState('');
+    const [selectedYear, setSelectedYear] = useState('');
 
 
     const columns = [
-        { field: 'id', headerName: 'ID', flex: 0.5 }, // Takes up 0.5x the width
-        { field: 'userId', headerName: 'Email', flex: 2 }, // Takes up 2x the width
-        { field: 'workingDate', headerName: 'Day of working', flex: 1 }, // Takes up 1x the width
-        { field: 'inAt', headerName: 'Check-in Time', flex: 1 }, // Takes up 1x the width
-        { field: 'outAt', headerName: 'Check-out Time', flex: 1 }, // Takes up 1x the width
+        { field: 'id', headerName: 'ID', flex: 0.5 },
+        { field: 'userId', headerName: 'Email', flex: 2 },
+        { field: 'workingDate', headerName: 'Day of working', flex: 1 },
+        { field: 'inAt', headerName: 'Check-in Time', flex: 1 },
+        { field: 'outAt', headerName: 'Check-out Time', flex: 1 },
     ];
 
-    async function fetchDataByUserId(userId : string): Promise<void> {
+    async function fetchDataByUserId(userId: string, month: number, year: number): Promise<void> {
         const userIdBeforeDash = userId.split('-')[0];
-        const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/GetUserByUserId?month=' + 3 + '&year=' + 2025 + '&userId=';
-        console.log(apiUrl+userIdBeforeDash);
-        const response = await fetch(apiUrl+userIdBeforeDash);
+        const apiUrl = import.meta.env.VITE_API_URL + 'api/DataOnly_APIaCheckIn/GetUserByUserId?month=' + month + '&year=' + year + '&userId=';
+        console.log(apiUrl + userIdBeforeDash);
+        const response = await fetch(apiUrl + userIdBeforeDash);
         if (response.ok) {
             const data = await response.json();
             console.log(data);
@@ -47,6 +50,18 @@ export default function ExportCustomToolbar() {
         }
     }
 
+    function handleSearch(){
+        if (selectedName === '' || selectedMonth === '' || selectedYear === '') {   
+            alert('Vui lòng chọn tên, tháng và năm trước khi tìm kiếm!');
+            return;
+        }
+        else {
+            fetchDataByUserId(selectedName, parseInt(selectedMonth), parseInt(selectedYear));
+        }
+    }
+
+
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedName('');
         setFilter(e.target.value);
@@ -55,20 +70,59 @@ export default function ExportCustomToolbar() {
     const handleNameClick = (name: string) => {
         setSelectedName(name);
         setFilter('');
-        fetchDataByUserId(name);
+        setShowSelects(true); // Hiển thị các select khi người dùng chọn tên
+    };
+
+    const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedMonth(e.target.value);
+    };
+
+    const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedYear(e.target.value);
+    };
+
+    const handleExportExcel = async () => {
+        if(selectedName === '' || selectedMonth === '' || selectedYear === '') {
+            alert('Vui lòng chọn tên, tháng và năm trước khi xuất file!');
+            return
+        }
+        try {
+            const apiUrl = import.meta.env.VITE_API_URL + 'api/export/ExportUserCheckinData';
+            const selectedNameBeforeDash = selectedName.split('-')[0];
+            console.log(selectedNameBeforeDash);
+            const response = await fetch(`${apiUrl}?month=${selectedMonth}&year=${selectedYear}&userID=${selectedNameBeforeDash}`, {
+                method: 'GET',
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to export Excel file');
+            }
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `checkin-data-${selectedName}.xlsx`);
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode?.removeChild(link);
+        } catch (error) {
+            console.error('Error exporting Excel:', error);
+            alert('Failed to export Excel file. Please try again.');
+        }
     };
 
     useEffect(() => {
-            async function getAllUserName() {
-                const apiUrl = import.meta.env.VITE_API_URL + 'api/personalprofiles/GetAllUsersName';
-                const response = await fetch(apiUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    setNameOfUsers(data);
-                }
+        async function getAllUserName() {
+            const apiUrl = import.meta.env.VITE_API_URL + 'api/personalprofiles/GetAllUsersName';
+            const response = await fetch(apiUrl);
+            if (response.ok) {
+                const data = await response.json();
+                setNameOfUsers(data);
             }
-            getAllUserName();
-        }, []);
+        }
+        getAllUserName();
+    }, []);
 
     return (
         <div className="p-6 bg-[#083B75] min-h-screen text-center max-w-screen rounded-lg">
@@ -99,6 +153,7 @@ export default function ExportCustomToolbar() {
                         onClick={() => {
                             setFilter('');
                             setSelectedName('');
+                            setShowSelects(false); // Ẩn các select khi người dùng xóa tên
                         }}
                         className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                     >
@@ -123,6 +178,49 @@ export default function ExportCustomToolbar() {
 
 
             </div>
+
+            {/* Selects for Month and Year */}
+            
+                <div className="mb-6 flex justify-center space-x-4">
+                    <select
+                        value={selectedMonth}
+                        onChange={handleMonthChange}
+                        className="px-4 py-2 bg-white border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                        <option value="">Chọn tháng</option>
+                        {Array.from({ length: 12 }, (_, i) => (
+                            <option key={i + 1} value={i + 1}>
+                                Tháng {i + 1}
+                            </option>
+                        ))}
+                    </select>
+                    <select
+                        value={selectedYear}
+                        onChange={handleYearChange}
+                        className="px-4 py-2 bg-white border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                        <option value="">Chọn năm</option>
+                        {Array.from({ length: 10 }, (_, i) => (
+                            <option key={i} value={2025 - i}>
+                                Năm {2025 - i}
+                            </option>
+                        ))}
+                    </select>
+                    <button className="px-4 cursor-pointer py-2 bg-white border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        onClick={handleSearch}
+                    ><span className="text-gray-800 font-medium"> <SearchRoundedIcon/> Tìm kiếm</span>
+                    </button>
+                </div>
+            
+
+            {/* Export Button */}
+            <button
+                onClick={handleExportExcel}
+                className="mb-6 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+            >
+                <DownloadRoundedIcon /> Export to Excel
+            </button>
+
             <div className="w-full overflow-x-auto p-5 bg-white rounded-lg shadow-md">
                 <DataGrid
                     rows={rows}

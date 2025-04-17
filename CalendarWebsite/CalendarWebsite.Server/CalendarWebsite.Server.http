@@ -27,3 +27,11 @@ GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/  {{month}}&
 GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetUserByUserId?month={{month}}&year={{year}}&userID={{userID}}
 
 ###
+
+POST {{CalendarWebsite.Server_HostAddress}}/api/export/HelloWorld
+
+###
+
+GET {{CalendarWebsite.Server_HostAddress}}/api/export/ExportUserCheckinData?month={{month}}&year={{year}}&userID={{userID}}
+
+###

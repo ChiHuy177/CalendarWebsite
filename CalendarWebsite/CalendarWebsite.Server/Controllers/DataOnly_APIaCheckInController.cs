@@ -31,7 +31,8 @@ namespace CalendarWebsite.Server.Controllers
         [HttpGet("GetUserByUserId")]
         public async Task<ActionResult<IEnumerable<DataOnly_APIaCheckIn>>> GetUserByUserId(int month,int year ,string userID)
         {
-            return await _context.Users.Where(w => w.UserId == userID && w.InAt.HasValue && w.InAt.Value.Month == month && w.InAt.Value.Year == year).ToListAsync();
+            return await _context.Users.Where(w => w.UserId == userID && w.InAt.HasValue && w.InAt.Value.Month == month && w.InAt.Value.Year == year)
+            .OrderBy(w => w.InAt).ToListAsync();
         }
 
         [HttpGet("GetAllUsersName")]
