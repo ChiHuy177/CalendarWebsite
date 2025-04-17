@@ -18,7 +18,7 @@ export default function ExportCustomToolbar() {
     const [nameOfUsers, setNameOfUsers] = useState<string[]>([]);
     const [filter, setFilter] = useState('');
     const [selectedName, setSelectedName] = useState('');
-    const [showSelects, setShowSelects] = useState(false);
+    // const [showSelects, setShowSelects] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
 
@@ -70,7 +70,7 @@ export default function ExportCustomToolbar() {
     const handleNameClick = (name: string) => {
         setSelectedName(name);
         setFilter('');
-        setShowSelects(true); // Hiển thị các select khi người dùng chọn tên
+
     };
 
     const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -153,7 +153,7 @@ export default function ExportCustomToolbar() {
                         onClick={() => {
                             setFilter('');
                             setSelectedName('');
-                            setShowSelects(false); // Ẩn các select khi người dùng xóa tên
+
                         }}
                         className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                     >
