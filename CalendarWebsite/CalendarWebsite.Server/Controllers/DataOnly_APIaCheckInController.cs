@@ -58,6 +58,14 @@ namespace CalendarWebsite.Server.Controllers
             return Ok(count);
         }
 
+        [HttpGet("GetAllCheckinInDay")]
+        public async Task<ActionResult<DataOnly_APIaCheckIn>> GetAllCheckinInDay(int day, int month, int year)
+        {
+            var result = await _context.Users.Where(e => e.InAt.HasValue && e.InAt.Value.Day == day && e.InAt.HasValue && e.InAt.Value.Month == month && e.InAt.Value.Year == year)
+                .ToListAsync();
+            return Ok(result);
+        }
+
         // GET: api/DataOnly_APIaCheckIn/5
         [HttpGet("{id}")]
         public async Task<ActionResult<DataOnly_APIaCheckIn>> GetDataOnly_APIaCheckIn(long id)

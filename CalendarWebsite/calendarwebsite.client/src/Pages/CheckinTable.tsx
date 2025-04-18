@@ -5,7 +5,7 @@ import { formatTime, User } from '../interfaces/type';
 import { formatDate } from '@fullcalendar/core/index.js';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Skeleton, styled } from '@mui/material';
+import { Autocomplete, Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Skeleton, styled, TextField } from '@mui/material';
 import { Bounce, toast } from 'react-toastify';
 
 
@@ -13,11 +13,13 @@ import { Bounce, toast } from 'react-toastify';
 export default function ExportCustomToolbar() {
     const [rows, setRows] = useState([]);
     const [nameOfUsers, setNameOfUsers] = useState<string[]>([]);
-    const [filter, setFilter] = useState('');
+    // const [filter, setFilter] = useState('');
     const [selectedName, setSelectedName] = useState('');
     const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const [loading, setLoading] = useState(false);
+
+
 
     const columnGroupingModel: GridColumnGroupingModel = [
         {
@@ -66,6 +68,7 @@ export default function ExportCustomToolbar() {
                     viewBox="0 0 452 257"
                     aria-hidden
                     focusable="false"
+                    className='pt-5'
                 >
                     <path
                         className="no-rows-primary"
@@ -176,22 +179,22 @@ export default function ExportCustomToolbar() {
                 progress: undefined,
                 theme: "light",
                 transition: Bounce,
-                });
+            });
             return;
         } else {
             fetchDataByUserId(selectedName, parseInt(selectedMonth), parseInt(selectedYear));
         }
     }
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedName('');
-        setFilter(e.target.value);
-    };
+    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     setSelectedName('');
+    //     setFilter(e.target.value);
+    // };
 
-    const handleNameClick = (name: string) => {
-        setSelectedName(name);
-        setFilter('');
-    };
+    // const handleNameClick = (name: string) => {
+    //     setSelectedName(name);
+    //     setFilter('');
+    // };
 
     const handleMonthChange = (e: SelectChangeEvent) => {
         setSelectedMonth(e.target.value);
@@ -251,8 +254,31 @@ export default function ExportCustomToolbar() {
         <div className="p-6 bg-[#083B75] min-h-screen text-center max-w-screen rounded-lg">
             <h1 className="font-bold text-5xl pb-6 text-white">Staff Checkin Table</h1>
             <div className="mb-8 flex flex-col items-center">
-                <div className="relative w-96">
-                    <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <Autocomplete
+                    disablePortal
+                    options={nameOfUsers}
+                    sx={{
+                        width: '50%',
+                        backgroundColor: 'white',
+                        borderRadius: '20px',
+                        '& .MuiInputLabel-root': {
+                            color: '#083B75', // Màu chữ của label
+                            backgroundColor: 'white', // Màu nền của label
+                            padding: '0 5px',
+                            borderRadius: '5px', // Bo tròn góc của label
+                        },
+                    }}
+                    value={selectedName}
+                    onChange={(_event, value) => setSelectedName(value || '')}
+                    renderInput={(params) => (
+                        <TextField {...params}
+                            label="Nhập tên"
+                        ></TextField>)
+                    }
+                />
+                <div className="relative w-110">
+
+                    {/* <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </span>
                     <input
@@ -279,8 +305,8 @@ export default function ExportCustomToolbar() {
                         className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                     >
                         ✕
-                    </button>
-                    {filter && (
+                    </button> */}
+                    {/* {filter && (
                         <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto mt-1">
                             {nameOfUsers
                                 ?.filter((name: string) => name.toLowerCase().includes(filter.toLowerCase()))
@@ -294,7 +320,7 @@ export default function ExportCustomToolbar() {
                                     </div>
                                 ))}
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
 

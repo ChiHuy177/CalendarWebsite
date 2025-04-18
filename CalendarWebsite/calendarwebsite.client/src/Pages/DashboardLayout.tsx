@@ -3,6 +3,7 @@ import { Avatar, IconButton, AppBar, Toolbar, Drawer, List, ListItem, ListItemIc
 import MenuIcon from "@mui/icons-material/Menu";
 import CalendarMonthTwoToneIcon from "@mui/icons-material/CalendarMonthTwoTone";
 import BackupTableIcon from "@mui/icons-material/BackupTable";
+import CalendarViewMonthRoundedIcon from '@mui/icons-material/CalendarViewMonthRounded';
 import { Link, Outlet } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -17,6 +18,7 @@ export default function DashboardLayout() {
     const navigationItems = [
         { text: "Staff checkin calendar", icon: <CalendarMonthTwoToneIcon className="text-amber-50" />, path: "/" },
         { text: "Staff checkin table", icon: <BackupTableIcon className="text-amber-50" />, path: "/table" },
+        { text: "Staff checkin table by day", icon: <CalendarViewMonthRoundedIcon className="text-amber-50" />, path: "/table" },
     ];
 
     return (

@@ -23,7 +23,8 @@
     <PackageJsonDependenciesMuiXDataGrid Condition="$(PackageJsonDependenciesMuiXDataGrid) == ''">^7.28.3</PackageJsonDependenciesMuiXDataGrid>
     <PackageJsonDependenciesMuiXDataGridGenerator Condition="$(PackageJsonDependenciesMuiXDataGridGenerator) == ''">^7.28.3</PackageJsonDependenciesMuiXDataGridGenerator>
     <PackageJsonDependenciesTailwindcssVite Condition="$(PackageJsonDependenciesTailwindcssVite) == ''">^4.1.3</PackageJsonDependenciesTailwindcssVite>
-    <PackageJsonDependenciesToolpadCore Condition="$(PackageJsonDependenciesToolpadCore) == ''">^0.14.0</PackageJsonDependenciesToolpadCore>
+    <PackageJsonDependenciesToolpadCore Condition="$(PackageJsonDependenciesToolpadCore) == ''">^0.13.0</PackageJsonDependenciesToolpadCore>
+    <PackageJsonDependenciesAxios Condition="$(PackageJsonDependenciesAxios) == ''">^1.8.4</PackageJsonDependenciesAxios>
     <PackageJsonDependenciesFullcalendar Condition="$(PackageJsonDependenciesFullcalendar) == ''">^6.1.17</PackageJsonDependenciesFullcalendar>
     <PackageJsonDependenciesPreact Condition="$(PackageJsonDependenciesPreact) == ''">^10.26.5</PackageJsonDependenciesPreact>
     <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^19.0.0</PackageJsonDependenciesReact>

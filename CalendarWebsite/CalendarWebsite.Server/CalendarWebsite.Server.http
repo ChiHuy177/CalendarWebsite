@@ -35,3 +35,16 @@ POST {{CalendarWebsite.Server_HostAddress}}/api/export/HelloWorld
 GET {{CalendarWebsite.Server_HostAddress}}/api/export/ExportUserCheckinData?month={{month}}&year={{year}}&userID={{userID}}
 
 ###
+
+GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetAllCheckinInDay?month={{month}}&year={{year}}
+
+###
+
+GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetAllCheckinInDay?month={{month}}&year={{year}}
+
+###
+
+@day=1
+GET {{CalendarWebsite.Server_HostAddress}}/api/dataonly_apiacheckin/GetAllCheckinInDay?day={{day}}&month={{month}}&year={{year}}
+
+###
