@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CalendarWebsite.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10b591562f39c6950c9ec7dfde9b23c88765be62")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d4923db0af2621c626b0126e294a4e4b2a4238b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CalendarWebsite.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CalendarWebsite.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
