@@ -7,7 +7,7 @@ import path from 'path';
 import child_process from 'child_process';
 import { env } from 'process';
 import tailwindcss from '@tailwindcss/vite'
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+
 
 const baseFolder =
     env.APPDATA !== undefined && env.APPDATA !== ''
@@ -43,17 +43,9 @@ const target = 'https://calendarwebsite-my2z.onrender.com'; // URL backend từ 
 // https://vitejs.dev/config/
 export default defineConfig({
     base: '/',
-
     plugins: [plugin(),
     tailwindcss(),
-    viteStaticCopy({
-        targets: [
-            {
-                src: 'static.json', // Đường dẫn tới file static.json
-                dest: '.' // Sao chép vào thư mục gốc của dist
-            }
-        ]
-    })],
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
