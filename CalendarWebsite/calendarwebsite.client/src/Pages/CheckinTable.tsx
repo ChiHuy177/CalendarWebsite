@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DataGrid, GridColumnGroupingModel, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnGroupingModel, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import { formatTime, User } from '../interfaces/type';
 import { formatDate } from '@fullcalendar/core/index.js';
@@ -28,13 +28,13 @@ export default function ExportCustomToolbar() {
         }
     ]
 
-    const columns = [
-        { field: 'id', headerName: 'ID', flex: 0.5 },
-        { field: 'userId', headerName: 'Email', flex: 2 },
-        { field: 'workingDate', headerName: 'Day of working', flex: 1 },
-        { field: 'inAt', headerName: 'Check-in Time', flex: 1 },
-        { field: 'outAt', headerName: 'Check-out Time', flex: 1 },
-        { field: 'totalTime', headerName: 'Total Working Time', flex: 1 },
+    const columns: GridColDef[] = [
+        { field: 'id', headerName: '#', flex: 0.5, headerAlign: 'center' },
+        { field: 'userId', headerName: 'Email', flex: 2, headerAlign: 'center' },
+        { field: 'workingDate', headerName: 'Day of working', flex: 1, headerAlign: 'center' },
+        { field: 'inAt', headerName: 'Check-in Time', flex: 1, headerAlign: 'center' },
+        { field: 'outAt', headerName: 'Check-out Time', flex: 1, headerAlign: 'center' },
+        { field: 'totalTime', headerName: 'Total Working Time', flex: 1, headerAlign: 'center' },
     ];
     const StyledGridOverlay = styled('div')(({ theme }) => ({
         display: 'flex',
@@ -393,7 +393,16 @@ export default function ExportCustomToolbar() {
                             '& .MuiDataGrid-columnHeader': {
                                 backgroundColor: '#f5f5f5',
 
-                            }
+                            },
+                            '& .MuiDataGrid-row:nth-of-type(odd)': {
+                                backgroundColor: '#EEEEEE', // Màu nền cho hàng lẻ
+                            },
+                            '& .MuiDataGrid-row:nth-of-type(even)': {
+                                backgroundColor: '#ffffff', // Màu nền cho hàng chẵn
+                            },
+                            '& .MuiDataGrid-row:hover': {
+                                backgroundColor: '#D1E4F6', // Màu nền khi hover
+                            },
                         }}
                     />}
 
