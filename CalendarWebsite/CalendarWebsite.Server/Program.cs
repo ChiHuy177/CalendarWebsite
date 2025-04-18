@@ -40,6 +40,7 @@ namespace CalendarWebsite.Server
 
             app.UseCors();
             app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.MapStaticAssets();
 
             // Configure the HTTP request pipeline.
