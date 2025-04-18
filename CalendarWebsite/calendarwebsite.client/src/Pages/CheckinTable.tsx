@@ -6,6 +6,7 @@ import { formatDate } from '@fullcalendar/core/index.js';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Skeleton, styled } from '@mui/material';
+import { Bounce, toast } from 'react-toastify';
 
 
 
@@ -165,7 +166,17 @@ export default function ExportCustomToolbar() {
 
     function handleSearch() {
         if (selectedName === '' || selectedMonth === '' || selectedYear === '') {
-            alert('Vui lòng chọn tên, tháng và năm trước khi tìm kiếm!');
+            toast.error('Vui lòng nhập đầy đủ tên, tháng và năm tìm kiếm!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
             return;
         } else {
             fetchDataByUserId(selectedName, parseInt(selectedMonth), parseInt(selectedYear));
