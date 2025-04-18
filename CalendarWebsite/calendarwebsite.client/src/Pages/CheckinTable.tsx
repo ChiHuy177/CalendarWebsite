@@ -13,10 +13,9 @@ import { Bounce, toast } from 'react-toastify';
 export default function ExportCustomToolbar() {
     const [rows, setRows] = useState([]);
     const [nameOfUsers, setNameOfUsers] = useState<string[]>([]);
-    // const [filter, setFilter] = useState('');
     const [selectedName, setSelectedName] = useState('');
-    const [selectedMonth, setSelectedMonth] = useState('');
-    const [selectedYear, setSelectedYear] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState(() => (new Date().getMonth() + 1).toString());
+    const [selectedYear, setSelectedYear] = useState(() => new Date().getFullYear().toString());
     const [loading, setLoading] = useState(false);
 
 
@@ -278,49 +277,7 @@ export default function ExportCustomToolbar() {
                 />
                 <div className="relative w-110">
 
-                    {/* <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
-                        <i className="fa fa-search" aria-hidden="true"></i>
-                    </span>
-                    <input
-                        autoComplete="off"
-                        id="userIdField"
-                        type="text"
-                        placeholder=" "
-                        value={selectedName || filter}
-                        onChange={handleInputChange}
-                        className="block w-full pl-10 pr-10 pb-2.5 pt-2.5 text-sm text-gray-900 bg-white rounded-full border-2 border-gray-300 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-400 focus:border-blue-400 hover:bg-gray-50 transition duration-300 ease-in-out peer"
-                    />
-                    <label
-                        htmlFor="userIdField"
-                        className="absolute ml-[15px] rounded-sm left-6 top-0.5 text-sm text-gray-500 transform -translate-y-1/2 scale-100 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-1/2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600 transition-all duration-300 ease-in-out"
-                    >
-                        Nhập tên
-                    </label>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            setFilter('');
-                            setSelectedName('');
-                        }}
-                        className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                    >
-                        ✕
-                    </button> */}
-                    {/* {filter && (
-                        <div className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto mt-1">
-                            {nameOfUsers
-                                ?.filter((name: string) => name.toLowerCase().includes(filter.toLowerCase()))
-                                .map((filteredName: string, index: number) => (
-                                    <div
-                                        key={index}
-                                        className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-md hover:shadow-lg hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-200 cursor-pointer transition duration-200 ease-in-out"
-                                        onClick={() => handleNameClick(filteredName)}
-                                    >
-                                        <p className="text-gray-800 font-medium">{filteredName}</p>
-                                    </div>
-                                ))}
-                        </div>
-                    )} */}
+            
                 </div>
             </div>
 
