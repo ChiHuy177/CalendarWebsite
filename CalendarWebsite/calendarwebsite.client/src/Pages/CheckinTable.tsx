@@ -1,12 +1,13 @@
 import axios from 'axios';
-import { DataGrid, GridColDef, GridColumnGroupingModel, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnGroupingModel, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import { formatTime, User } from '../interfaces/type';
 import { formatDate } from '@fullcalendar/core/index.js';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { Autocomplete, Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Skeleton, styled, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Skeleton, styled, TextField, useTheme } from '@mui/material';
 import { Bounce, toast } from 'react-toastify';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 
@@ -17,27 +18,36 @@ export default function ExportCustomToolbar() {
     const [selectedMonth, setSelectedMonth] = useState(() => (new Date().getMonth() + 1).toString());
     const [selectedYear, setSelectedYear] = useState(() => new Date().getFullYear().toString());
     const [loading, setLoading] = useState(false);
-
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 
     const columnGroupingModel: GridColumnGroupingModel = [
         {
             groupId: "Thông tin nhân viên",
-            children: [{ field: 'id' }, { field: 'userId' }]
+            children: [{ field: 'id' }, { field: 'userId' }],
+            headerAlign: 'center',
         }, {
             groupId: "Thời gian làm việc",
-            children: [{ field: 'workingDate' }, { field: 'inAt' }, { field: 'outAt' }, { field: 'totalTime' }]
+            children: [{ field: 'workingDate' }, { field: 'inAt' }, { field: 'outAt' }, { field: 'totalTime' }],
+            headerAlign: 'center',
         }
     ]
 
     const columns: GridColDef[] = [
-        { field: 'id', headerName: '#', flex: 0.5, headerAlign: 'center' },
-        { field: 'userId', headerName: 'Email', flex: 2, headerAlign: 'center' },
-        { field: 'workingDate', headerName: 'Day of working', flex: 1, headerAlign: 'center' },
-        { field: 'inAt', headerName: 'Check-in Time', flex: 1, headerAlign: 'center' },
-        { field: 'outAt', headerName: 'Check-out Time', flex: 1, headerAlign: 'center' },
-        { field: 'totalTime', headerName: 'Total Working Time', flex: 1, headerAlign: 'center' },
+        { field: 'id', headerName: '#', flex: 0.5, headerAlign: 'center', cellClassName: 'grid-cell-center' },
+        { field: 'userId', headerName: 'Email', flex: 2, headerAlign: 'center', cellClassName: 'grid-cell-center' },
+        { field: 'workingDate', headerName: 'Day of working', flex: 1, headerAlign: 'center', cellClassName: 'grid-cell-center' },
+        { field: 'inAt', headerName: 'Check-in Time', flex: 1, headerAlign: 'center', cellClassName: 'grid-cell-center' },
+        { field: 'outAt', headerName: 'Check-out Time', flex: 1, headerAlign: 'center', cellClassName: 'grid-cell-center' },
+        { field: 'totalTime', headerName: 'Total Working Time', flex: 1, headerAlign: 'center', cellClassName: 'grid-cell-center' },
     ];
+
+    const columnVisibilityModel = {
+        userId: !isMobile,
+        totalTime: !isMobile,
+        // Các cột khác không định nghĩa sẽ mặc định hiển thị
+      };
     const StyledGridOverlay = styled('div')(({ theme }) => ({
         display: 'flex',
         flexDirection: 'column',
@@ -99,12 +109,6 @@ export default function ExportCustomToolbar() {
                     slotProps={{ tooltip: { title: 'Change density' } }}
                 />
                 <Box sx={{ flexGrow: 1 }} />
-                <GridToolbarExport
-                    slotProps={{
-                        tooltip: { title: 'Export data' },
-                        button: { variant: 'outlined' },
-                    }}
-                />
                 <Button
                     onClick={handleExportExcel}
                     className="mb-6 cursor-pointer px-6 py-3 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
@@ -260,6 +264,11 @@ export default function ExportCustomToolbar() {
                         width: '50%',
                         backgroundColor: 'white',
                         borderRadius: '20px',
+                        '& .MuiDataGrid-cell': {
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center', // Căn giữa nội dung trong ô
+                        },
                         '& .MuiInputLabel-root': {
                             color: '#083B75', // Màu chữ của label
                             backgroundColor: 'white', // Màu nền của label
@@ -277,7 +286,7 @@ export default function ExportCustomToolbar() {
                 />
                 <div className="relative w-110">
 
-            
+
                 </div>
             </div>
 
@@ -376,6 +385,7 @@ export default function ExportCustomToolbar() {
                     <Skeleton animation={false} />
                 </Box>) :
                     <DataGrid
+                        disableVirtualization={true}
                         rows={rows}
                         columns={columns}
                         slots={{
@@ -383,6 +393,7 @@ export default function ExportCustomToolbar() {
                             noRowsOverlay: CustomNoRowsOverlay
                         }}
                         columnGroupingModel={columnGroupingModel}
+                        columnVisibilityModel={columnVisibilityModel}
                         sx={{
                             '& .MuiDataGrid-columnHeader': {
                                 backgroundColor: '#f5f5f5',
@@ -396,7 +407,7 @@ export default function ExportCustomToolbar() {
                             },
                             '& .MuiDataGrid-row:hover': {
                                 backgroundColor: '#D1E4F6', // Màu nền khi hover
-                            },
+                            }
                         }}
                     />}
 
