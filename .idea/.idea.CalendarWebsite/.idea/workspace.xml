@@ -12,55 +12,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc7a7cc3-0ee9-4079-b758-27a518faea18" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/CustomWorkingTime.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/WorkWeek.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/CustomWorkingTimeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/ICustomWorkingTimeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/IWorkWeekRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/WorkWeekRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CalendarWebsite/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CalendarWebsite/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Controllers/EventController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/AttendeeResponseRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/CompanyEventDetail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/CompanyEventRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/CompanyEventResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/CreateEventRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Enums/AttendeeResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Enums/AttendeeRole.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Enums/EventPriority.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Enums/EventStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Enums/EventVisibility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Enums/RecurrenceType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventAttendee.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventCategory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventListResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventQueryRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventRecurrence.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/EventResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/Events.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/ReccurenceRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/ReccurenceResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/RecurrenceDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/UpdateEventRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/EventRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/IEventRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Services/EventService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Services/IEventService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CalendarWebsite/.idea/dataSources/8d9e199a-3b9e-460b-98e2-5f30f6e72a34.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CalendarWebsite/.idea/dataSources/8d9e199a-3b9e-460b-98e2-5f30f6e72a34.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CalendarWebsite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CalendarWebsite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Controllers/GenerateExcelReportController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Controllers/GenerateExcelReportController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Data/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Data/DatabaseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Models/UserInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Models/PersonalProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Profiles/MappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Profiles/DepartmentMappingProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/AttendanceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/AttendanceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/IPersonalProfileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/IPersonalProfileRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/IReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/IReportRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/PersonalProfileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/PersonalProfileRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/ReportRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Repositories/ReportRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Services/IReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Services/IReportService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/Services/ReportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/Services/ReportService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/bin/Debug/net9.0/CalendarWebsite.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/bin/Debug/net9.0/CalendarWebsite.Server.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/bin/Debug/net9.0/CalendarWebsite.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/bin/Debug/net9.0/CalendarWebsite.Server.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/CalendarWebsite.Server.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/CalendarWebsite.Server.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/CalendarWebsite.Server.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/apphost" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/apphost" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/ref/CalendarWebsite.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/ref/CalendarWebsite.Server.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/refint/CalendarWebsite.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/Debug/net9.0/refint/CalendarWebsite.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/project.packagespec.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/obj/Debug/package.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/obj/Debug/package.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarWebsite.Server/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/CalendarWebsite.Server/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendarwebsite.client/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendarwebsite.client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/ExcelExportButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/ExcelExportButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/MaterialDataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/MaterialDataTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/SidebarLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/SidebarLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/ThemeToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/ThemeToggle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/UserSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/UserSearch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/components/ui/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/interfaces/type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/interfaces/type.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/locales/en/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/locales/vi/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/locales/vi/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/src/pages/AttendanceDataPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/src/pages/AttendanceDataPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendarwebsite.client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/calendarwebsite.client/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +78,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/CalendarWebsite.Server/Services/DepartmentService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c8f7d45dcd2c48e78402c5a517034592f83200/b5/50a9d5e5/DateTimeOffset.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -89,31 +93,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.CalendarWebsite.Server: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "AttemptTailWind",
-    "last_opened_file_path": "/Users/thomasjohnson/Documents/GitHub/CalendarWebsite/CalendarWebsite.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "ts.external.directory.path": "/Users/thomasjohnson/Documents/GitHub/CalendarWebsite/calendarwebsite.client/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.CalendarWebsite.Server: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;AttemptTailWind&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/thomasjohnson/Documents/GitHub/CalendarWebsite/CalendarWebsite.sln&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/thomasjohnson/Documents/GitHub/CalendarWebsite/calendarwebsite.client/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver.localdb",
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver.localdb&quot;,
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.CalendarWebsite.Server: http">
     <configuration name="CalendarWebsite.Server: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/CalendarWebsite.Server/CalendarWebsite.Server.csproj" />
@@ -207,6 +211,11 @@
       <workItem from="1747044561291" duration="6259000" />
       <workItem from="1747204377810" duration="56011000" />
       <workItem from="1747798558503" duration="23104000" />
+      <workItem from="1748255439701" duration="2923000" />
+      <workItem from="1748510361705" duration="20038000" />
+      <workItem from="1749530888287" duration="9544000" />
+      <workItem from="1749712723008" duration="2018000" />
+      <workItem from="1749721069700" duration="2913000" />
     </task>
     <servers />
   </component>

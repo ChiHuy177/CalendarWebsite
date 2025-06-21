@@ -39,6 +39,8 @@ namespace CalendarWebsite.Server
             builder.Services.AddScoped<IPersonalProfileService, PersonalProfileService>();
             builder.Services.AddScoped<IWorkWeekService, WorkWeekService>();
             builder.Services.AddScoped<ICustomWorkingTimeService, CustomWorkingTimeService>();
+            builder.Services.AddScoped<IEventRepository, EventRepository>();
+            builder.Services.AddScoped<IEventService, EventService>();
             
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>

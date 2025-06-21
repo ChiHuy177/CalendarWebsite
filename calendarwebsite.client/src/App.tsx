@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import AttendanceDataPage from "./pages/AttendanceDataPage";
 import CustomWorkingTimePage from "./pages/CustomWorkingTimePage";
+import EventsPage from "./pages/EventsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SidebarLayout from "./components/SidebarLayout";
 import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
@@ -276,6 +277,7 @@ function App() {
             <Route path="/" element={<CalendarPage />} />
             <Route path="/attendance" element={<AttendanceDataPage />} />
             <Route path="/custom-working-time" element={<CustomWorkingTimePage />} />
+            <Route path="/events" element={<EventsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { CalendarIcon, ClipboardListIcon, ClockIcon } from "lucide-react";
+import { CalendarIcon, ClipboardListIcon, ClockIcon, CalendarDaysIcon } from "lucide-react";
 import VNTTLogo from "../assets/VNTTLogo.png";
 import {
   Sidebar,
@@ -40,6 +40,17 @@ export default function SidebarLayout() {
                   <Link to="/">
                     <CalendarIcon />
                     <span>{t("navigation.calendar") || "Calendar"}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  data-active={location.pathname === "/events"}
+                  asChild
+                >
+                  <Link to="/events">
+                    <CalendarDaysIcon />
+                    <span>{t("navigation.events") || "Events"}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
